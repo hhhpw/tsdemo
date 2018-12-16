@@ -12,6 +12,7 @@
 export let eventUtil: any = {
     addHandler: function(el: HTMLDivElement, type: string, handler: EventListener): void {
         if (el.addEventListener) {
+            console.log('handler', handler);
             el.addEventListener(type, handler, false);
         }
     },
