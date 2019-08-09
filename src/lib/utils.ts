@@ -10,18 +10,17 @@
 
 // export namespace Utils {
 export let eventUtil: any = {
-    addHandler: function(el: HTMLDivElement, type: string, handler: EventListener): void {
-        if (el.addEventListener) {
-            console.log('handler', handler);
-            el.addEventListener(type, handler, false);
-        }
-    },
-    removeHandler: function(el: HTMLDivElement, type: string, handler: EventListener): void {
-        if (el.removeEventListener) {
-            el.removeEventListener(type, handler, false);
-        }
+  addHandler: function (el: HTMLDivElement, type: string, handler: EventListener): void {
+    if (el.addEventListener) {
+      el.addEventListener(type, handler, false);
     }
-    
+  },
+  removeHandler: function (el: HTMLDivElement, type: string, handler: EventListener): void {
+    if (el.removeEventListener) {
+      el.removeEventListener(type, handler, false);
+    }
+  }
+
 
 }
 
