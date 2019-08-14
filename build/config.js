@@ -1,3 +1,9 @@
+/*
+ * @Author: haopeiwei
+ * @Date: 2019-08-07 15:49:54
+ * @LastEditors: haopeiwei
+ * @LastEditTime: 2019-08-14 12:54:22
+ */
 'use strict';
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -19,9 +25,7 @@ const commonConfig = (env) => ({
     new UglifyJsPlugin({
       sourceMap: true,
       uglifyOptions: {
-        compress: {
-          warnings: false
-        }
+        warnings: false
       },
       parallel: true,  //并行
     }),

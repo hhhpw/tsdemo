@@ -2,9 +2,15 @@
  * @Author: haopeiwei
  * @Date: 2019-08-07 17:34:23
  * @LastEditors: haopeiwei
- * @LastEditTime: 2019-08-11 16:05:31
+ * @LastEditTime: 2019-08-14 15:45:34
  */
 import "./snake.less";
+// import logo from './logo.png';
+// const logo = require('./logo.png');
+// const img = document.createElement("img")
+// const img = new Image();
+// img.src = logo;
+
 // 盒子生成
 let box: Element = document.querySelectorAll(".box")[0];
 const fragment = document.createDocumentFragment();
@@ -25,6 +31,7 @@ for (let i = 0; i < 1600; i++) {
   // }
   fragment.append(ele);
 }
+
 
 function getLogLat(i) {
   // if (i % 50 === 0)
