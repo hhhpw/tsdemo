@@ -2,7 +2,7 @@
  * @Author: haopeiwei
  * @Date: 2019-08-07 17:34:23
  * @LastEditors: haopeiwei
- * @LastEditTime: 2019-08-14 15:45:34
+ * @LastEditTime: 2019-08-14 17:42:32
  */
 import "./snake.less";
 // import logo from './logo.png';
@@ -34,16 +34,12 @@ for (let i = 0; i < 1600; i++) {
 
 
 function getLogLat(i) {
-  // if (i % 50 === 0)
-  // nodes.push([(i % 50) + 1, Math.ceil((i + 1) / 50)]);
-  // if ( i + 1)
   return `${[(i % 50) + 1, Math.ceil((i + 1) / 50)]}`;
 }
 
 // 宽高50 * 80  共1600个方块 坐标集合【1，50】 * 【1，32】
 box.append(fragment);
 
-// console.log("nodes", nodes);
 
 function Node(x: number, y: number) {
   this.x = x;
@@ -52,9 +48,10 @@ function Node(x: number, y: number) {
 
 
 function Snake() {
-  this.foodPos = <Object>{ x: Number, y: Number };
+  this.foodPos = {};
   this.oldSnakeNodes = [];
   this.snakeNodes = [];
+  this.timer = null;
   this.snakeNodes.push(new Node(29, 2));
   this.snakeNodes.push(new Node(30, 2));
   this.snakeNodes.push(new Node(31, 2));
@@ -70,20 +67,11 @@ function Snake() {
       snakeBodyElem.classList.remove("snakeBody");
     }
   };
-  Snake.prototype.printSnake = function (code: number, snakeHead: any) {
+  Snake.prototype.printSnake = function () {
     // 是否吃到食物
-    console.log("snakeHead", snakeHead);
-    if (snakeHead) {
-      if (snakeHead.x === this.foodPos.x && snakeHead.y === this.foodPos.y) {
 
-        // this.snakeNodes.unshift(this.foodPos);
-        console.log(" this.snakeNodes", this.snakeNodes, code);
-      }
-    }
-
-    // const snakeHead
     this.oldSnakeNodes = [].concat(this.snakeNodes);
-
+    console.log("+++++++++++", this.snakeNodes);
     for (let i = 0; i < this.snakeNodes.length; i++) {
       let xPos = this.snakeNodes[i].x;
       let yPos = this.snakeNodes[i].y;
@@ -119,48 +107,54 @@ function Snake() {
     for (let k = 0; k < this.snakeNodes.length - 1; k++) {
       this.snakeNodes[k] = this.snakeNodes[k + 1];
     }
-    console.log("this.snakeNodes", this.snakeNodes);
-    console.log(this.snakeNodes[this.snakeNodes.length - 1]);
     let xHeader = this.snakeNodes[this.snakeNodes.length - 1].x;
     let yHeader = this.snakeNodes[this.snakeNodes.length - 1].y;
     switch (code) {
       case 39:
-        //右  console.log("右");
+        //右 
         this.snakeNodes[this.snakeNodes.length - 1] = { x: xHeader + 1, y: yHeader };
         break;
       case 40:
-        //下   console.log("下");
+        //下 
         this.snakeNodes[this.snakeNodes.length - 1] = { x: xHeader, y: yHeader + 1 };
         break;
       case 38:
-        //上  console.log("上");
+        //上 
         this.snakeNodes[this.snakeNodes.length - 1] = { x: xHeader, y: yHeader - 1 };
-
         break;
       case 37:
-        //左  console.log("左");
+        //左 
         this.snakeNodes[this.snakeNodes.length - 1] = { x: xHeader - 1, y: yHeader };
         break;
-
       default:
         break;
     }
     this.isGameOver(this.snakeNodes).then(() => {
+      const snakeHead = this.snakeNodes[this.snakeNodes.length - 1];
+      const snakeEnd = this.oldSnakeNodes[0];
+      // 是否吃到食物
+      if (snakeHead.x === this.foodPos.x && snakeHead.y === this.foodPos.y) {
+        this.snakeNodes.unshift(snakeEnd);
+        this.printFood();
+      }
       this.removeSnakeAttr();
-      console.log(" this.snakeNodes[this.snakeNodes.length - 1]", this.snakeNodes[this.snakeNodes.length - 1]);
-      this.printSnake(code, this.snakeNodes[this.snakeNodes.length - 1]);
+      this.printSnake(code, this.snakeNodes);
+
     }).catch(() => {
-      alert("游戏结束");
+      console.log("你玩游戏真像蔡徐坤");
     })
   };
   // 绘制食物
   Snake.prototype.printFood = function () {
     // 1=>32 1=>50 且不在蛇身坐标点
+    if (this.foodPos.x && this.foodPos.y) {
+      let foodDom = document.querySelector(`div[position="${[this.foodPos.x, this.foodPos.y]}"]`) as HTMLDivElement;
+      foodDom.classList.remove("food");
+    }
     let food = this.randomFoodPos();
     this.foodPos = food;
-    console.log(food, "食物啊");
     let snakeDom = document.querySelector(`div[position="${[food.x, food.y]}"]`) as HTMLElement;
-    snakeDom.style.backgroundColor = "pink";
+    snakeDom.classList.add("food");
   };
   // 生成随机数
   Snake.prototype.randomFoodPos = function () {
@@ -174,7 +168,6 @@ function Snake() {
 };
 
 const snakeIns = new Snake();
-// console.log("t", t);
 snakeIns.printSnake();
 snakeIns.printFood();
 
