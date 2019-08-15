@@ -1,3 +1,5 @@
+@size:100% 100%;
+@noRepeat: no-repeat;
 body {
   margin: 0;
   overflow: hidden;
@@ -31,14 +33,22 @@ img {
 
 // 蛇头
 .snakeHead {
-  background: red !important;
+  // background: red !important;
+  background-image: url("./cxk.png");
+
+  background-size: @size;
+  background-repeat:  @noRepeat;
 }
 
 //
 .snakeBody {
-  background: yellow;
+  background-image: url("./ball.jpg");
+  background-size: @size;
+  background-repeat:  @noRepeat;
 }
 .food {
-  background: pink;
+  background-image: url("./hoop.png");
+  background-size: @size;
+  background-repeat:  @noRepeat;
 }
 

@@ -9,7 +9,7 @@
     "qa": "webpack --config build/qa.webpack.config.js",
     "devBuild": "webpack --config build/devBuild.webpack.config.js",
     "start": "webpack-dev-server --open",
-    "dev": "webpack-dev-server --config build/dev.webpack.config.js"
+    "dev": "webpack-dev-server --config build/dev.webpack.config.js --host 172.30.31.103"
   },
   "keywords": [],
   "author": "",

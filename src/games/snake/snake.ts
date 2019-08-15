@@ -1,28 +1,5 @@
-/*
- * @Author: haopeiwei
- * @Date: 2019-08-07 17:34:23
- * @LastEditors: haopeiwei
- * @LastEditTime: 2019-08-15 14:14:09
- */
-
 import "./snake.less";
 
-// function debounce(fn, delay) {
-//   let timer: any = null;
-//   return function () {
-//     let that = this;
-//     let args = arguments;
-//     console.log(args[0])
-//     let code = args[0].keyCode;
-//     console.log("code", code);
-//     if (code === 39 || code === 40 || code === 38 || code === 37) {
-//       clearTimeout(timer);
-//       timer = setTimeout(function () {
-//         fn.call(that, code);
-//       }, delay);
-//     }
-//   }
-// }
 // 盒子生成
 let box: Element = document.querySelectorAll(".box")[0];
 const fragment = document.createDocumentFragment();
@@ -35,21 +12,20 @@ for (let i = 0; i < 1600; i++) {
 }
 
 
-function getLogLat(i) {
+function getLogLat(i: number): string {
   return `${[(i % 50) + 1, Math.ceil((i + 1) / 50)]}`;
 }
 
 box.append(fragment);
 
-function Node(x: number, y: number) {
+function Node(x: number, y: number): void {
   this.x = x;
   this.y = y;
 }
 
-
 function Snake() {
   this.foodPos = {};
-  this.oldSnakeNodes = [];
+  this.oldSnakeNodes;
   this.snakeNodes = [];
   this.timer = null;
   this.snakeNodes.push(new Node(29, 2));
@@ -96,8 +72,9 @@ Snake.prototype.isGameOver = function (nodes: Array<{ x: number, y: number }>) {
       // 咬到自身
     } else if (snakeBody.some(d => (d.x === headX) && (d.y === headY))) {
       reject("咬到自己");
+    } else {
+      reslove();
     }
-    reslove();
   })
 };
 Snake.prototype.moveSnake = function (code: number) {
@@ -129,7 +106,7 @@ Snake.prototype.moveSnake = function (code: number) {
       break;
   }
   this.isGameOver(this.snakeNodes).then(() => {
-    this.isHavingFood()
+    this.isHavingFood();
     this.removeSnakeAttr();
     this.printSnake(code, this.snakeNodes);
     // 增加难度
@@ -143,13 +120,13 @@ Snake.prototype.moveSnake = function (code: number) {
     }
     if (this.timer) clearInterval(this.timer);
     this.timer = setInterval(() => {
+      // console.log("move");
       this.moveSnake(code);
     }, speed);
   }).catch((err) => {
     this.timer = 0;
     this.reload();
-    alert(err);
-    // throw new Error(err);
+    alert(err + "了，蔡徐坤");
   })
 };
 // 是否吃到食物
@@ -205,16 +182,4 @@ window.addEventListener("keydown", function (event) {
   }
 })
 
-
-
-window.addEventListener("keyup", function (event) {
-  let e = event || window.event;
-  let code = e.keyCode || e.which;
-  if (code === 39 || code === 40 || code === 38 || code === 37) {
-    // snakeIns.moveSnake(code);
-    return;
-  }
-})
-
-// window.addEventListener("keydown", debounce(snakeIns.moveSnake, 2000))
 
