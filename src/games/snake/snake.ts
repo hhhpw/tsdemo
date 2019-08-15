@@ -1,3 +1,9 @@
+/*
+ * @Author: haopeiwei
+ * @Date: 2019-08-07 17:34:23
+ * @LastEditors: haopeiwei
+ * @LastEditTime: 2019-08-15 18:22:58
+ */
 import "./snake.less";
 
 // 盒子生成
@@ -124,9 +130,10 @@ Snake.prototype.moveSnake = function (code: number) {
       this.moveSnake(code);
     }, speed);
   }).catch((err) => {
+    clearInterval(this.timer);
     this.timer = 0;
-    this.reload();
     alert(err + "了，蔡徐坤");
+    this.reload();
   })
 };
 // 是否吃到食物
