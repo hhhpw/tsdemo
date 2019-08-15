@@ -2,7 +2,7 @@
  * @Author: haopeiwei
  * @Date: 2019-08-07 15:49:54
  * @LastEditors: haopeiwei
- * @LastEditTime: 2019-08-14 15:31:14
+ * @LastEditTime: 2019-08-15 11:51:02
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //分离css
@@ -36,7 +36,9 @@ module.exports = {
     filename: '[name].js',
     path: __dirname + '/dist'
   },
-
+  resolve: {
+    extensions: ['.wasm', '.mjs', '.js', '.json', '.ts']
+  },
   module: {
     rules: [
 
