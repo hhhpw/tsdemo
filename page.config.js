@@ -1,3 +1,9 @@
+/*
+ * @Author: haopeiwei
+ * @Date: 2019-08-07 15:49:54
+ * @LastEditors: haopeiwei
+ * @LastEditTime: 2019-08-16 14:56:12
+ */
 module.exports = [
 
   {
@@ -9,6 +15,11 @@ module.exports = [
     name: 'hpw/games/snake',
     html: 'games/snake/snake.html',
     js: 'games/snake/snake.ts',
+  },
+  {
+    name: 'hpw/demo/swiper',
+    html: 'swiper/swiper.html',
+    js: 'swiper/swiper.ts',
   },
   // {
   //     name: 'car/B/B',
