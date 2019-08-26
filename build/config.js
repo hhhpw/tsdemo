@@ -1,8 +1,8 @@
 /*
  * @Author: haopeiwei
  * @Date: 2019-08-07 15:49:54
- * @LastEditors: haopeiwei
- * @LastEditTime: 2019-08-16 14:55:03
+ * @LastEditors: hpw
+ * @LastEditTime: 2019-08-26 17:02:53
  */
 'use strict';
 
@@ -55,7 +55,7 @@ const config = {
       hot: true,
       open: true,
       compress: true,
-      openPage: 'hpw/demo/swiper.html',
+      openPage: 'hpw/games/snake.html',
       proxy: {
         "/api": {
           // target: "http://172.30.37.84:8821",

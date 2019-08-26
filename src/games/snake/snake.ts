@@ -1,11 +1,12 @@
 /*
  * @Author: haopeiwei
  * @Date: 2019-08-07 17:34:23
- * @LastEditors: haopeiwei
- * @LastEditTime: 2019-08-15 18:22:58
+ * @LastEditors: hpw
+ * @LastEditTime: 2019-08-26 20:20:57
  */
 import "./snake.less";
-
+console.log(document.documentElement.clientWidth);
+console.log(window.innerWidth);
 // 盒子生成
 let box: Element = document.querySelectorAll(".box")[0];
 const fragment = document.createDocumentFragment();

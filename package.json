@@ -9,7 +9,7 @@
     "qa": "webpack --config build/qa.webpack.config.js",
     "devBuild": "webpack --config build/devBuild.webpack.config.js",
     "start": "webpack-dev-server --open",
-    "dev": "webpack-dev-server --config build/dev.webpack.config.js --host 172.30.31.103"
+    "dev": "webpack-dev-server --config build/dev.webpack.config.js --host 172.30.30.38"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +34,8 @@
     "mockjs": "1.0.1-beta3",
     "postcss-loader": "3.0.0",
     "style-loader": "0.23.1",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
     "ts-loader": "5.3.1",
     "typescript": "3.2.2",
     "uglifyjs-webpack-plugin": "2.0.1",

@@ -1,8 +1,8 @@
 /*
  * @Author: haopeiwei
  * @Date: 2019-08-07 15:49:54
- * @LastEditors: haopeiwei
- * @LastEditTime: 2019-08-15 11:51:02
+ * @LastEditors: hpw
+ * @LastEditTime: 2019-08-26 17:01:09
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //分离css
@@ -93,6 +93,21 @@ module.exports = {
             },
           },
           'less-loader'
+        ]
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          // 'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require("autoprefixer")("last 10 versions")]
+            },
+          },
+          'stylus-loader'
         ]
       },
     ]
